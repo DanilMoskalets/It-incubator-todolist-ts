@@ -25,7 +25,7 @@ export function Todolist(props: PropsType) {
     }
 
     const onClickAddTask = () => {
-        if (title.length == 0) {
+        if (title.length === 0) {
 
         }else {
             props.addTask(title.trim())
@@ -35,8 +35,12 @@ export function Todolist(props: PropsType) {
 
     const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
-            props.addTask(title)
-            setTitle('')
+            if(title.length !== 0) {
+                props.addTask(title.trim())
+                setTitle('')
+            }
+        }else {
+
         }
     }
 
