@@ -25,23 +25,15 @@ export function Todolist(props: PropsType) {
     }
 
     const onClickAddTask = () => {
-        if (title.length === 0) {
+        if (title.trim().length === 0) return
 
-        }else {
-            props.addTask(title.trim())
-            setTitle('')
-        }
+        props.addTask(title.trim())
+        setTitle('')
     }
 
     const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter') {
-            if(title.length !== 0) {
-                props.addTask(title.trim())
-                setTitle('')
-            }
-        }else {
-
-        }
+        if (e.key !== 'Enter') return
+        onClickAddTask()
     }
 
     const onClickHandleFilter = (value: FilterValuesType) => {
