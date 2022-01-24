@@ -1,9 +1,13 @@
 // @flow
 import * as React from 'react';
+import {FilterValuesType} from "../App";
+import s from '../Todolist.module.css'
 
 type Props = {
     name: string
     callBack: () => void
+    className?: string | object
+    styleForButton?: FilterValuesType
 };
 export const Button = (props: Props) => {
 
@@ -11,5 +15,5 @@ export const Button = (props: Props) => {
         props.callBack()
     }
 
-    return  <button onClick={onClickHandler}>{props.name}</button>
+    return  <button className={props.styleForButton === props.name ? s.activeFilter : '' } onClick={onClickHandler}>{props.name}</button>
 };

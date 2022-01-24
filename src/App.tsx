@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import {Todolist} from './Todolist';
 import {v1} from "uuid";
+import s from 'src/Todolist.module.css'
 
 export type FilterValuesType = "all" | "active" | "completed";
 
@@ -14,11 +15,16 @@ function App() {
         {id: v1(), title: "Rest API", isDone: false},
         {id: v1(), title: "GraphQL", isDone: false},
     ]);
+    const [filter, setFilter] = useState<FilterValuesType>("all");
+
+    const checkBoxChangeStatus = (id: string, value: boolean) => {
+        setTasks(tasks.map(m => m.id === id ? {...m, isDone: value} : m))
+    }
 
     const addTask = (title: string) => {
-        const newTask =  {id: v1(), title: title, isDone: false}
-        setTasks([newTask,...tasks])
-        console.log('12123')
+        const newTask = {id: v1(), title: title, isDone: false}
+        console.log(...tasks)
+        setTasks([newTask, ...tasks])
     }
 
     const removeTask = (id: string) => {
@@ -26,7 +32,6 @@ function App() {
         setTasks(filteredTasks);
     }
 
-    let [filter, setFilter] = useState<FilterValuesType>("all");
 
     let tasksForTodolist = tasks;
 
@@ -48,7 +53,11 @@ function App() {
                 tasks={tasksForTodolist}
                 removeTask={removeTask}
                 changeFilter={changeFilter}
-                addTask={addTask}/>
+                addTask={addTask}
+                checkBoxChangeStatus={checkBoxChangeStatus}
+                filter={filter}
+            />
+
 
         </div>
     );
