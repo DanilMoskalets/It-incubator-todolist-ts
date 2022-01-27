@@ -2,7 +2,8 @@ import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {FilterValuesType} from './App';
 import {Button} from "./components/Button";
 import s from './Todolist.module.css'
-import {CheckBox} from "./components/ChecBox";
+import {CheckBox} from "./components/CheckBox";
+import {UniversalInput} from "./components/UniversalInput";
 
 
 type TaskType = {
@@ -25,12 +26,6 @@ export function Todolist(props: PropsType) {
     const [title, setTitle] = useState('')
     const [error, setError] = useState(false)
 
-    const onchangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setTitle(e.currentTarget.value)
-        setError(false)
-
-    }
-
 
     const checkBoxHandle = (tID: string, value: boolean) => {
         props.checkBoxChangeStatus(tID, value)
@@ -47,10 +42,6 @@ export function Todolist(props: PropsType) {
 
     }
 
-    const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-        if (e.key !== 'Enter') return
-        onClickAddTask()
-    }
 
     const onClickHandleFilter = (value: FilterValuesType) => {
         props.changeFilter(value)
@@ -64,12 +55,19 @@ export function Todolist(props: PropsType) {
     return <div>
         <h3>{props.title}</h3>
         <div>
-            <input
-                className={ error ? s.error: ''}
-                value={title}
-                onChange={onchangeHandler}
-                onKeyPress={onKeyPressHandler}
+            <UniversalInput
+                error={error}
+                title={title}
+                setTitle={setTitle}
+                setError={setError}
+                onClickAddTask={onClickAddTask}
             />
+            {/*<input*/}
+            {/*    className={ error ? s.error: ''}*/}
+            {/*    value={title}*/}
+            {/*    onChange={onchangeHandler}*/}
+            {/*    onKeyPress={onKeyPressHandler}*/}
+            {/*/>*/}
             <Button name={'+'} callBack={onClickAddTask}/>
 
         </div>
@@ -83,7 +81,7 @@ export function Todolist(props: PropsType) {
 
                     return (
                         <li key={t.id} className={t.isDone ? s.isDoneStyle : ''}>
-                            <CheckBox isDone={t.isDone} checkBoxChangeStatus={(value)=>checkBoxHandle(t.id,value)} />
+                            <CheckBox isDone={t.isDone} checkBoxChangeStatus={(value) => checkBoxHandle(t.id, value)}/>
                             {/*<input type="checkbox" checked={t.isDone}*/}
                             {/*       onChange={(event) => checkBoxHandle(t.id, event.currentTarget.checked)}/>*/}
 
