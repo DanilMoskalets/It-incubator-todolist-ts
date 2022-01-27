@@ -60,7 +60,7 @@ export function Todolist(props: PropsType) {
                 title={title}
                 setTitle={setTitle}
                 setError={setError}
-                onClickAddTask={onClickAddTask}
+                callBack={onClickAddTask}
             />
             {/*<input*/}
             {/*    className={ error ? s.error: ''}*/}

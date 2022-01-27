@@ -6,7 +6,7 @@ type universalInputPropsType = {
     title: string
     setTitle: Dispatch<SetStateAction<string>>
     setError: Dispatch<SetStateAction<boolean>>
-    onClickAddTask: () => void
+    callBack: () => void
 
 }
 
@@ -20,7 +20,7 @@ export const UniversalInput = (props: universalInputPropsType) => {
 
     const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.key !== 'Enter') return
-        props.onClickAddTask()
+        props.callBack()
     }
 
     return (
