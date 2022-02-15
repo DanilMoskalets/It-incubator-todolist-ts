@@ -1,6 +1,7 @@
 // @flow 
 import * as React from 'react';
 import {ChangeEvent, useState, KeyboardEvent} from "react";
+import {TextField} from "@material-ui/core";
 
 type Props = {
     addItem: (title: string) => void
@@ -34,12 +35,18 @@ export const AddItemForm = (props: Props) => {
 
     return (
         <div>
-            <input
+            <TextField
                 value={title}
-                onChange={onChangeSetTitle} //input.value
+                onChange={onChangeSetTitle}
                 onKeyPress={onKeyPressAddTask}
-                className={error ? "error" : ""}
+                variant = 'outlined'
             />
+            {/*<input*/}
+            {/*    value={title}*/}
+            {/*    onChange={onChangeSetTitle} //input.value*/}
+            {/*    onKeyPress={onKeyPressAddTask}*/}
+            {/*    className={error ? "error" : ""}*/}
+            {/*/>*/}
             <button onClick={addItem}>+</button>
             {error &&  <div>{error}</div> }
         </div>
