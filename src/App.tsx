@@ -143,9 +143,10 @@ const App = () => {
         todoLists.map(tl => {
         const tasksForRender = getTasksForRender(tl)
         return (
-            <Grid container spacing={3} >
-                <Paper key={tl.id} elevation={8} className={'todoList'}  style={{padding: '10px'}}>
-                    <Grid item>
+
+                <Grid item key={tl.id}>
+                <Paper  elevation={8} className={'todoList'}  style={{padding: '10px'}}>
+
                     <TodoList
 
                         id={tl.id}
@@ -160,9 +161,11 @@ const App = () => {
                         changeTaskTitle={changeTaskTitle}
                         changeTodoListTitle={changeTodoListTitle}
                     />
-                    </Grid>
+
+
                 </Paper>
-            </Grid>
+                </Grid>
+
         )
     })
 
@@ -181,10 +184,10 @@ const App = () => {
                 </Toolbar>
             </AppBar>
             <Container fixed>
-                <Grid container style={{padding: '20px'}} >
+                <Grid container style={{padding: '20px', }} >
                     <AddItemForm addItem={addTodoList}/>
                 </Grid>
-                <Grid container spacing={3}>
+                <Grid container spacing={10}>
                     {todoListsComponents}
                 </Grid>
             </Container>

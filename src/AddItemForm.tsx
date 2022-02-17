@@ -37,9 +37,12 @@ export const AddItemForm = (props: Props) => {
         <div>
             <TextField
                 value={title}
+                label={'Type value'}
                 onChange={onChangeSetTitle}
                 onKeyPress={onKeyPressAddTask}
                 variant = 'outlined'
+                error={!!error}
+                helperText={error}
             />
             {/*<input*/}
             {/*    value={title}*/}
@@ -48,7 +51,6 @@ export const AddItemForm = (props: Props) => {
             {/*    className={error ? "error" : ""}*/}
             {/*/>*/}
             <button onClick={addItem}>+</button>
-            {error &&  <div>{error}</div> }
         </div>
     );
 };

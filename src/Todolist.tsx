@@ -22,8 +22,6 @@ type TodoListPropsType = {
 
 const TodoList = (props: TodoListPropsType) => {
     const tasksComponents = props.tasks.map(t => {
-        // как вариант в отличие от "removeTask"
-        // const changeTaskStatus = () => props.changeTaskStatus(t.id)
         const removeTask = (taskID: string) => props.removeTask(taskID, props.id)
         const changeTaskStatus = (taskID: string, isDone: boolean) =>
             props.changeTaskStatus(taskID, isDone, props.id);
