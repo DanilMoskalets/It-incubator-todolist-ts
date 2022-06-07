@@ -21,13 +21,6 @@ const Task: React.FC<TaskPropsType> = (
         ...props
     }
 ) => {
-    // const id = props.id
-    // const isDone = props.isDone
-    // const title = props.title
-    // const removeTask = props.removeTask
-    // const changeTaskStatus = props.changeTaskStatus
-    // const {id, isDone, title, removeTask, changeTaskStatus} = props
-
     const onClickRemoveTask = () => removeTask(id)
     const onChangeChangeTaskStatus = (e: ChangeEvent<HTMLInputElement>) =>
         changeTaskStatus(id, e.currentTarget.checked)

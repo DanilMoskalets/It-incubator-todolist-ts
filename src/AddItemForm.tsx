@@ -16,7 +16,7 @@ export const AddItemForm = (props: Props) => {
     }
 
     const onKeyPressAddTask = (e: KeyboardEvent<HTMLInputElement>) => {
-      setError(false)
+      if(error !== false) setError(false)
         if(e.charCode === 13){
             addItem()
         }
