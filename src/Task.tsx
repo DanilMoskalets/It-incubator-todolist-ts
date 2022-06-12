@@ -35,6 +35,7 @@ const Task: React.FC<TaskPropsType> = (
                 color={'primary'}
                 onChange={onChangeChangeTaskStatus}
                 checked={isDone}/>
+
             <EditableSpan title={title} changeTaskTitle={onChangeTaskTitle}/>
             <IconButton onClick={onClickRemoveTask}>
                 <DeleteOutline/>
