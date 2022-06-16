@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 
-import {FilterValuesType} from "./App";
+import {FilterValuesType} from "./AppRedux";
 import {FC} from "react";
 import {Button} from "@material-ui/core";
 
@@ -38,22 +38,3 @@ export const ButtonsBlock: FC<Props> = (
         </>
     );
 };
-
-
-
-
-{/*<Button*/}
-{/*    active={filter === "all"}*/}
-{/*    title={"All"}*/}
-{/*    onClickHandler={setFilter('all')}*/}
-{/*/>*/}
-{/*<Button*/}
-{/*    active={filter === "active"}*/}
-{/*    title={"Active"}*/}
-{/*    onClickHandler={setFilter('active')}*/}
-{/*/>*/}
-{/*<Button*/}
-{/*    active={filter === "completed"}*/}
-{/*    title={"Completed"}*/}
-{/*    onClickHandler={setFilter("completed")}*/}
-{/*/>*/}

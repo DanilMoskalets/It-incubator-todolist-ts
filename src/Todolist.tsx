@@ -1,19 +1,20 @@
 import React from 'react';
 import TodoListHeader from "./TodoListHeader";
 
-import {FilterValuesType, TaskType} from "./App";
+import {FilterValuesType, TaskStateType, TaskType, TodoListType} from "./AppRedux";
 import Task from "./Task";
 import {AddItemForm} from "./AddItemForm";
 import {ButtonsBlock} from "./ButtonsBlock";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootState} from "./redux/store";
+import {addTaskAC} from "./reducer/task-reducer";
+import {changeTodoListFilterAC, changeTodoListTitleAC} from "./reducer/todoList-reducer";
 
 type TodoListPropsType = {
     id: string
     title: string
-    tasks: Array<TaskType>
     filter: FilterValuesType
     removeTask: (taskID: string, todoListID: string) => void
-    changeFilter: (filter: FilterValuesType, todoListID: string) => void
-    addTask: (title: string, todoListID: string) => void
     removeTodoList: (todoListID: string) => void
     changeTaskStatus: (taskID: string, isDone: boolean, todoListID: string) => void
     changeTaskTitle: (taskID: string, title: string, todoListID: string) => void
@@ -21,7 +22,19 @@ type TodoListPropsType = {
 }
 
 const TodoList = (props: TodoListPropsType) => {
-    const tasksComponents = props.tasks.map(t => {
+    const dispatch = useDispatch()
+    const tasks = useSelector<AppRootState, TaskType[]>(state => state.tasks[props.id])
+
+   const allTasks = tasks
+    let tasksFiltered = allTasks
+    if(props.filter === "active"){
+        tasksFiltered = allTasks.filter(t => !t.isDone)
+    }
+    if(props.filter === "completed"){
+        tasksFiltered = allTasks.filter(t => t.isDone)
+    }
+
+    const tasksComponents = tasksFiltered.map(t => {
         const removeTask = (taskID: string) => props.removeTask(taskID, props.id)
         const changeTaskStatus = (taskID: string, isDone: boolean) =>
             props.changeTaskStatus(taskID, isDone, props.id);
@@ -47,18 +60,21 @@ const TodoList = (props: TodoListPropsType) => {
 
 
     const setFilterValue = (filter: FilterValuesType) =>
-        () => props.changeFilter(filter, props.id)
+        dispatch(changeTodoListFilterAC( props.id, filter))
 
 
     const removeTodoList = () => props.removeTodoList(props.id)
 
     const addTask = (title: string) => {
-        props.addTask(title, props.id)
+        dispatch(addTaskAC(title, props.id))
     }
 
     const onChangeTodoListTitle = (newTitle: string) => {
-        props.changeTodoListTitle(newTitle, props.id)
+        dispatch(changeTodoListTitleAC(newTitle, props.id))
     }
+
+
+
 
 
     return (

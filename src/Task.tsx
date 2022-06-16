@@ -1,5 +1,5 @@
 import React, {ChangeEvent} from 'react';
-import {TaskType} from "./App";
+import {TaskType} from "./AppRedux";
 import {EditableSpan} from "./EditableSpan";
 import {Checkbox, IconButton} from '@material-ui/core';
 import {DeleteOutline} from "@material-ui/icons";
@@ -47,16 +47,4 @@ const Task: React.FC<TaskPropsType> = (
 export default Task;
 
 
-{/*<input*/}
-{/*    type="checkbox"*/}
-{/*    onChange={onChangeChangeTaskStatus}*/}
-{/*    checked={isDone}/>*/}
 
-// 1. Функция принимает параметром массив чисел и возвращает max значение.
-// getMax1([1,4,6,8]) => 8
-// 2. Функция принимает параметром массив чисел и возвращает массив с двумя макс значениями
-// getMax2([1,4,6,8]) => [8, 6]
-// 3. Функция принимает параметром массив чисел и количество max,
-// которые надо найти и возвращает массив  max значениями
-// getMax3([1,4,6,8],1) => [8, 6, 4]
-// math.max и sort не используем!
