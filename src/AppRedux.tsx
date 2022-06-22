@@ -46,13 +46,8 @@ const AppReducer = () => {
     const addTodoList = (title: string) => {
         const idTodoList = v1();
         dispatch(addTodoListAC(title,idTodoList))
-
-
     }
 
-    const changeFilter = (filter: FilterValuesType, todoListID: string) => {
-        dispatch(changeTodoListFilterAC(todoListID, filter))
-    }
 
     const changeTodoListTitle = (title: string, todoListID: string) => {
        dispatch(changeTodoListTitleAC(todoListID, title))
@@ -91,7 +86,6 @@ const AppReducer = () => {
                         title={tl.title}
                         filter={tl.filter}
                         removeTask={removeTask}
-                        changeFilter={changeFilter}
                         removeTodoList={removeTodoList}
                         changeTaskStatus={changeTaskStatus}
                         changeTaskTitle={changeTaskTitle}
