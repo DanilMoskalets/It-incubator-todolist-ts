@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import './App.css';
 import TodoList from "./TodoList";
 import {v1} from "uuid";
@@ -43,32 +43,31 @@ const AppReducer = React.memo( () => {
      const tasks = useSelector<AppRootState, TaskStateType>(state => state.tasks)
 
 // TodoList
-    const addTodoList = (title: string) => {
+    const addTodoList = useCallback( (title: string) => {
         const idTodoList = v1();
         dispatch(addTodoListAC(title,idTodoList))
-    }
+    }, []);
 
-
-    const changeTodoListTitle = (title: string, todoListID: string) => {
+    const changeTodoListTitle = useCallback((title: string, todoListID: string) => {
        dispatch(changeTodoListTitleAC(todoListID, title))
-    }
+    }, []);
 
-    const removeTodoList = (todoListID: string) => {
+    const removeTodoList = useCallback( (todoListID: string) => {
         dispatch(removeTodoListAC(todoListID))
 
-    }
-
+    }, [])
 // Task
-    const removeTask = (taskID: string, todoListID: string) => {
+    const removeTask = useCallback( (taskID: string, todoListID: string) => {
       dispatch(removeTaskAC(taskID, todoListID))
-    }
-    const changeTaskStatus = (taskID: string, isDone: boolean, todoListID: string) => {
-       dispatch(changeTaskStatusAC(taskID, isDone, todoListID))
-    }
+    }, [])
 
-    const changeTaskTitle = (taskID: string, title: string, todoListID: string) => {
+    const changeTaskStatus = useCallback((taskID: string, isDone: boolean, todoListID: string) => {
+       dispatch(changeTaskStatusAC(taskID, isDone, todoListID))
+    }, [] )
+
+    const changeTaskTitle = useCallback( (taskID: string, title: string, todoListID: string) => {
        dispatch(changeTaskTitleAC(taskID, title, todoListID))
-    }
+    }, [])
 
 
 
