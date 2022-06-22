@@ -8,7 +8,7 @@ import {Button} from "@material-ui/core";
 
 type Props = {
     filter: FilterValuesType
-    setFilter: (filter: FilterValuesType) => () => void
+   setFilter: (filter: FilterValuesType) =>   void
 };
 export const ButtonsBlock: FC<Props> = React.memo( (
     {
@@ -16,22 +16,24 @@ export const ButtonsBlock: FC<Props> = React.memo( (
         setFilter
     }
 ) => {
+
+
     return (
         <>
             <Button
                  color="primary"
                 variant={ filter === 'all' ? "contained" : 'outlined'}
-                onClick={setFilter('all')}
+                onClick={() => setFilter('all')}
             >All</Button>
             <Button
                 color={'primary'}
                 variant={ filter === 'active' ? "contained" : 'outlined'}
-                onClick={setFilter('active')}
+                onClick={() =>setFilter('active')}
             >Active</Button>
             <Button
               variant= { filter === 'completed' ? "contained" : 'outlined'}
                 color={'secondary'}
-                onClick={setFilter('completed')}
+                onClick={() =>setFilter('completed')}
             >Completed</Button>
 
 
