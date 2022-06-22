@@ -35,12 +35,12 @@ const TodoList = React.memo( (props: TodoListPropsType) => {
     }
 
     const tasksComponents = tasksFiltered.map(t => {
-        const removeTask = (taskID: string) => props.removeTask(taskID, props.id)
-        const changeTaskStatus = (taskID: string, isDone: boolean) =>
-            props.changeTaskStatus(taskID, isDone, props.id);
+        const removeTask = useCallback((taskID: string) => props.removeTask(taskID, props.id), [])
+        const changeTaskStatus = useCallback( (taskID: string, isDone: boolean) =>
+            props.changeTaskStatus(taskID, isDone, props.id), []);
 
-        const changeTaskTitle = (taskID: string, title: string) =>
-            props.changeTaskTitle(taskID, title, props.id)
+        const changeTaskTitle = useCallback( (taskID: string, title: string) =>
+            props.changeTaskTitle(taskID, title, props.id), [])
 
         return (
             <Task
@@ -66,13 +66,13 @@ const TodoList = React.memo( (props: TodoListPropsType) => {
 
     const removeTodoList = () => props.removeTodoList(props.id)
 
-    const addTask = (title: string) => {
+    const addTask = useCallback( (title: string) => {
         dispatch(addTaskAC(title, props.id))
-    }
+    }, [] )
 
-    const onChangeTodoListTitle = (newTitle: string) => {
+    const onChangeTodoListTitle = useCallback( (newTitle: string) => {
         dispatch(changeTodoListTitleAC(newTitle, props.id))
-    }
+    }, [])
 
 
 
