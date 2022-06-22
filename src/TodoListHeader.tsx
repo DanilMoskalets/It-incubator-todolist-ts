@@ -9,7 +9,7 @@ type TodoListHeaderPropsType = {
     changeTodoListTitle: (newTitle: string) => void
 }
 
-const TodoListHeader: React.FC<TodoListHeaderPropsType> = (
+const TodoListHeader: React.FC<TodoListHeaderPropsType> = React.memo( (
     {
         title,
         changeTodoListTitle,
@@ -25,6 +25,6 @@ const TodoListHeader: React.FC<TodoListHeaderPropsType> = (
             </IconButton>
         </h3>
     );
-};
+});
 
 export default TodoListHeader;

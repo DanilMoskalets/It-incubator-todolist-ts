@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import TodoListHeader from "./TodoListHeader";
 
 import {FilterValuesType, TaskStateType, TaskType, TodoListType} from "./AppRedux";
@@ -21,7 +21,7 @@ type TodoListPropsType = {
     changeTodoListTitle: (title: string, todoListID: string) => void
 }
 
-const TodoList = (props: TodoListPropsType) => {
+const TodoList = React.memo( (props: TodoListPropsType) => {
     const dispatch = useDispatch()
     const tasks = useSelector<AppRootState, TaskType[]>(state => state.tasks[props.id])
 
@@ -59,8 +59,9 @@ const TodoList = (props: TodoListPropsType) => {
 
 
 
-    const setFilterValue = (filter: FilterValuesType) =>
-        dispatch(changeTodoListFilterAC( props.id, filter))
+    const setFilterValue = useCallback( (filter: FilterValuesType) => {
+        dispatch(changeTodoListFilterAC(props.id, filter))
+    }, [])
 
 
     const removeTodoList = () => props.removeTodoList(props.id)
@@ -94,6 +95,6 @@ const TodoList = (props: TodoListPropsType) => {
             </div>
         </div>
     );
-};
+});
 
 export default TodoList;

@@ -10,7 +10,7 @@ type Props = {
     filter: FilterValuesType
     setFilter: (filter: FilterValuesType) => () => void
 };
-export const ButtonsBlock: FC<Props> = (
+export const ButtonsBlock: FC<Props> = React.memo( (
     {
         filter,
         setFilter
@@ -37,4 +37,4 @@ export const ButtonsBlock: FC<Props> = (
 
         </>
     );
-};
+});

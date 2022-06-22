@@ -6,7 +6,7 @@ type EditableSpanPropsType = {
     title: string
     changeTaskTitle: (newTitle: string) => void
 };
-export const EditableSpan: FC<EditableSpanPropsType> = (
+export const EditableSpan: FC<EditableSpanPropsType> = React.memo( (
     {
         title,
         changeTaskTitle
@@ -47,4 +47,4 @@ export const EditableSpan: FC<EditableSpanPropsType> = (
             }
         </>
     );
-};
+});

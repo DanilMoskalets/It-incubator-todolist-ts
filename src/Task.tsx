@@ -10,7 +10,7 @@ type TaskPropsType = TaskType & {
     changeTaskTitle: (id: string, title: string) => void
 }
 
-const Task: React.FC<TaskPropsType> = (
+const Task: React.FC<TaskPropsType> = React.memo((
     {
         id,
         isDone,
@@ -42,7 +42,7 @@ const Task: React.FC<TaskPropsType> = (
             </IconButton>
         </li>
     );
-};
+});
 
 export default Task;
 

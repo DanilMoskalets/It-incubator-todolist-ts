@@ -6,7 +6,7 @@ import {TextField} from "@material-ui/core";
 type Props = {
     addItem: (title: string) => void
 };
-export const AddItemForm = (props: Props) => {
+export const AddItemForm = React.memo((props: Props) => {
 
     const [title, setTitle] = useState<string>("")
     const [error, setError] = useState<boolean | string>(false)
@@ -53,4 +53,4 @@ export const AddItemForm = (props: Props) => {
             <button onClick={addItem}>+</button>
         </div>
     );
-};
+});

@@ -6,7 +6,7 @@ type ButtonPropsType = {
     onClickHandler: () => void
 }
 
-const Button: React.FC<ButtonPropsType> = (
+const Button: React.FC<ButtonPropsType> = React.memo( (
     {
         title,
         onClickHandler,
@@ -23,6 +23,6 @@ const Button: React.FC<ButtonPropsType> = (
             {title}
         </button>
     )
-};
+});
 
 export default Button;

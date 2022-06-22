@@ -37,7 +37,7 @@ export type TaskStateType = {
 
 export type FilterValuesType = "all" | "active" | "completed"
 
-const AppReducer = () => {
+const AppReducer = React.memo( () => {
     const dispatch = useDispatch()
      const todoLists = useSelector<AppRootState, TodoListType[]>(state => state.todoLists)
      const tasks = useSelector<AppRootState, TaskStateType>(state => state.tasks)
@@ -123,6 +123,6 @@ const AppReducer = () => {
             </Container>
         </div>
     );
-}
+})
 
 export default AppReducer;
