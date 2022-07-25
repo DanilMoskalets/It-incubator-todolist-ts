@@ -22,6 +22,7 @@ type TodoListPropsType = {
 }
 
 const TodoList = React.memo( (props: TodoListPropsType) => {
+    console.log('TodoList call')
     const dispatch = useDispatch()
     const tasks = useSelector<AppRootState, TaskType[]>(state => state.tasks[props.id])
 
@@ -35,12 +36,12 @@ const TodoList = React.memo( (props: TodoListPropsType) => {
     }
 
     const tasksComponents = tasksFiltered.map(t => {
-        const removeTask = useCallback((taskID: string) => props.removeTask(taskID, props.id), [])
-        const changeTaskStatus = useCallback( (taskID: string, isDone: boolean) =>
-            props.changeTaskStatus(taskID, isDone, props.id), []);
+        const removeTask = (taskID: string) => props.removeTask(taskID, props.id)
+        const changeTaskStatus = (taskID: string, isDone: boolean) =>
+            props.changeTaskStatus(taskID, isDone, props.id)
 
-        const changeTaskTitle = useCallback( (taskID: string, title: string) =>
-            props.changeTaskTitle(taskID, title, props.id), [])
+        const changeTaskTitle =  (taskID: string, title: string) =>
+            props.changeTaskTitle(taskID, title, props.id)
 
         return (
             <Task
@@ -59,9 +60,9 @@ const TodoList = React.memo( (props: TodoListPropsType) => {
 
 
 
-    const setFilterValue = useCallback( (filter: FilterValuesType) => {
+    const setFilterValue =  (filter: FilterValuesType) => {
         dispatch(changeTodoListFilterAC(props.id, filter))
-    }, [])
+    }
 
 
     const removeTodoList = () => props.removeTodoList(props.id)

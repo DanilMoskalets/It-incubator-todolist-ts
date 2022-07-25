@@ -12,6 +12,7 @@ export const EditableSpan: FC<EditableSpanPropsType> = React.memo( (
         changeTaskTitle
     }
 ) => {
+    console.log('EditableSpan call')
     const [userText, setUserText] = useState(title)
     const [editMode, setEditMode] = useState(false)
 

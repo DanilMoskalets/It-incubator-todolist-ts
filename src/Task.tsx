@@ -21,6 +21,7 @@ const Task: React.FC<TaskPropsType> = React.memo((
         ...props
     }
 ) => {
+    console.log('task call')
     const onClickRemoveTask = () => removeTask(id)
     const onChangeChangeTaskStatus = (e: ChangeEvent<HTMLInputElement>) =>
         changeTaskStatus(id, e.currentTarget.checked)

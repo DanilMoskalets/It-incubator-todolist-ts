@@ -38,6 +38,7 @@ export type TaskStateType = {
 export type FilterValuesType = "all" | "active" | "completed"
 
 const AppReducer = React.memo( () => {
+    console.log('App call')
     const dispatch = useDispatch()
      const todoLists = useSelector<AppRootState, TodoListType[]>(state => state.todoLists)
      const tasks = useSelector<AppRootState, TaskStateType>(state => state.tasks)

@@ -7,6 +7,7 @@ type Props = {
     addItem: (title: string) => void
 };
 export const AddItemForm = React.memo((props: Props) => {
+    console.log('AddItemForm call')
 
     const [title, setTitle] = useState<string>("")
     const [error, setError] = useState<boolean | string>(false)
@@ -44,12 +45,6 @@ export const AddItemForm = React.memo((props: Props) => {
                 error={!!error}
                 helperText={error}
             />
-            {/*<input*/}
-            {/*    value={title}*/}
-            {/*    onChange={onChangeSetTitle} //input.value*/}
-            {/*    onKeyPress={onKeyPressAddTask}*/}
-            {/*    className={error ? "error" : ""}*/}
-            {/*/>*/}
             <button onClick={addItem}>+</button>
         </div>
     );
