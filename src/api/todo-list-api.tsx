@@ -7,21 +7,21 @@ export type TodolistType = {
     order: number
 }
 
+type TasksItemType = {
+    "id": string
+    "title": string
+    "description": null | string
+    "todoListId": string
+    "order": number
+    "status": number
+    "priority": number
+    "startDate": null | string
+    "deadline": null | string
+    "addedDate": string
+}
+
 export type TasksType = {
-    "items": [
-        {
-            "id": string
-            "title": string
-            "description": null | string
-            "todoListId": string
-            "order": number
-            "status": number
-            "priority": number
-            "startDate": null | string
-            "deadline": null | string
-            "addedDate": string
-        }
-    ],
+    "items": TasksItemType[]
     "totalCount": number
     "error": null | string
 }
@@ -76,7 +76,7 @@ export const todoListAPI = {
 export const tasksAPI = {
 
     getTasks(todoListID: string) {
-        const promise = instance.get(
+        const promise = instance.get<TasksType>(
             `todo-lists/${todoListID}/tasks`,
         )
         return promise
@@ -89,6 +89,17 @@ export const tasksAPI = {
         return promise
     },
 
+
+    deleteTasks(todoListID: string, tasksID: string) {
+        const promise = instance.delete(`todo-lists/${todoListID}/tasks/${tasksID}`)
+        return promise
+    },
+
+    updateTasks(todoListID: string, taskID: string, title: string){
+        const promise = instance.put(`/todo-lists/${todoListID}/tasks/${taskID}`,
+            {title})
+        return promise
+    }
 
 
 }

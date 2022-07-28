@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {ChangeEvent, useEffect, useState} from 'react'
 import {tasksAPI, todoListAPI} from "../api/todo-list-api";
 
 
@@ -60,22 +60,37 @@ export const UpdateTodolistTitle = () => {
 
 export const GetTask = () => {
     const [state, setState] = useState<any>(null)
-    useEffect(() => {
-        const todoListID = 'f054351b-f381-4b44-96e5-8c0f1d874375'
-        tasksAPI.getTasks(todoListID)
+    const [value, setValue] = useState('')
+    const handleGetTasks = () => {
+        tasksAPI.getTasks(value)
             .then((res) => {
                 return res.data.items
             })
             .then(data => {
                 setState(data)
             })
+
+
         // здесь мы будем делать запрос и ответ закидывать в стейт.
         // который в виде строки будем отображать в div-ке
 
-    }, [])
+    }
+
+    const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
+        setValue(e.currentTarget.value)
+    }
+
+
     return (
         <div>
             {JSON.stringify(state)}
+            <hr/>
+            <input
+                type='text'
+                value={value}
+                onChange={handleChangeInput}
+            />
+            <button onClick={handleGetTasks}>OK</button>
         </div>
     )
 }
@@ -91,6 +106,40 @@ export const CreateTasks = () => {
     return (
         <div>
             {JSON.stringify(state)}
+
+        </div>
+    )
+}
+
+export const UpdateTasks = () => {
+        const [state, setState] = useState<any>(null)
+        useEffect(() => {
+            tasksAPI.updateTasks('f054351b-f381-4b44-96e5-8c0f1d874375', '53930f76-fc53-45a2-b3f8-77bfed3fdb8a', 'Task3')
+
+
+        }, [])
+
+        return (
+            <div>
+                {JSON.stringify(state)}
+
+            </div>
+        )
+
+    }
+
+export const DeleteTasks = () => {
+    const [state, setState] = useState<any>(null)
+    useEffect(() => {
+        tasksAPI.deleteTasks('f054351b-f381-4b44-96e5-8c0f1d874375', '87e7a02f-130b-4d6c-af3f-b3d0aa77f6a8')
+
+
+    }, [])
+
+    return (
+        <div>
+            {JSON.stringify(state)}
+
         </div>
     )
 

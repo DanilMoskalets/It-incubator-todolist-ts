@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import './App.css';
 import TodoList from "./TodoList";
 import {v1} from "uuid";
@@ -8,12 +8,13 @@ import {Menu} from "@material-ui/icons";
 import {
     addTodoListAC,
     changeTodoListFilterAC,
-    changeTodoListTitleAC, removeTodoListAC
+    changeTodoListTitleAC, removeTodoListAC, setTodoListsAC
 
 } from "./reducer/todoList-reducer";
 import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "./reducer/task-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootState} from "./redux/store";
+import {todoListAPI} from "./api/todo-list-api";
 // C
 // R
 // U
@@ -43,6 +44,12 @@ const AppReducer = React.memo( () => {
      const todoLists = useSelector<AppRootState, TodoListType[]>(state => state.todoLists)
      const tasks = useSelector<AppRootState, TaskStateType>(state => state.tasks)
 
+
+    useEffect(() => {
+        todoListAPI.getTodolists()
+            .then(res => dispatch(setTodoListsAC(res.data)))
+
+    }, [])
 // TodoList
     const addTodoList = useCallback( (title: string) => {
         const idTodoList = v1();
